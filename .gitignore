@@ -1,0 +1,18 @@
+# Plan interno: no se publica
+PLAN.md
+Plan vps-starter-es.md
+
+# Secretos y configuración local
+.env
+*.env
+!.env.example
+*.pem
+*.key
+id_*
+
+# Salidas de pruebas y del sistema
+tests/tmp/
+*.log
+.DS_Store
+Thumbs.db
+desktop.ini
