@@ -277,7 +277,7 @@ c_actualizaciones() {
     && grep -Eq '^[[:space:]]*APT::Periodic::Unattended-Upgrade[[:space:]]+"1"' "$auto_conf" 2>/dev/null; then
     resultado OK actualizaciones automaticas "Las actualizaciones de seguridad se instalan solas cada día."
   else
-    resultado AVISO actualizaciones automaticas "Las actualizaciones automáticas de seguridad no están activadas." "$GUIA_02#actualizaciones-automaticas"
+    resultado AVISO actualizaciones automaticas "Las actualizaciones automáticas de seguridad no están activadas." "$GUIA_02#actualizaciones-automáticas"
   fi
 
   if hay_comando apt-get; then
@@ -287,7 +287,7 @@ c_actualizaciones() {
     pendientes="${pendientes:-0}"
     seguridad="${seguridad:-0}"
     if [ "$pendientes" -gt 0 ]; then
-      resultado AVISO actualizaciones pendientes "Hay $pendientes actualizaciones pendientes ($seguridad de seguridad), según la última vez que el sistema buscó." "$GUIA_02#actualizaciones-automaticas"
+      resultado AVISO actualizaciones pendientes "Hay $pendientes actualizaciones pendientes ($seguridad de seguridad), según la última vez que el sistema buscó." "$GUIA_02#actualizaciones-automáticas"
     else
       resultado OK actualizaciones pendientes "No hay actualizaciones pendientes (según la última vez que el sistema buscó)."
     fi
