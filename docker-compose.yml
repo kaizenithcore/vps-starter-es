@@ -1,0 +1,36 @@
+# Vigilancia para tu servidor: Uptime Kuma te avisa si tu web o tu app se caen.
+# Guía paso a paso: docs/04-vigilar-tu-servidor.md
+#
+# SEGURIDAD: el panel solo escucha DENTRO del servidor (127.0.0.1) hasta que
+# sigas la guía 04. Uptime Kuma deja crear el administrador a la primera
+# persona que abre el panel; así nadie puede adelantarse.
+#
+# Arranca sin configuración. Para cambiar algo, copia .env.example a .env.
+
+name: vps-starter-vigilancia
+
+services:
+  uptime-kuma:
+    # Versión fijada a propósito. No uses "latest": todavía apunta a la 1.x.
+    # slim: sin MariaDB ni Chromium (más ligera). rootless: no corre como root.
+    image: louislam/uptime-kuma:2.5.9-slim-rootless
+    container_name: uptime-kuma
+    restart: unless-stopped
+    ports:
+      - "${KUMA_BIND:-127.0.0.1}:${KUMA_PORT:-3001}:3001"
+    environment:
+      TZ: ${TZ:-UTC}
+    volumes:
+      - uptime-kuma-datos:/app/data
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  uptime-kuma-datos:

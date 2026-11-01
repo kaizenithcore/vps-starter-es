@@ -33,7 +33,7 @@ Cuando llegues a uno: explica en una o dos frases qué va a pasar, pregunta y es
 | [01-conectar-al-servidor](docs/01-conectar-al-servidor.md) | Entrar al servidor con clave SSH | bajo | sí (la persona crea su clave) |
 | [02-proteger-el-servidor](docs/02-proteger-el-servidor.md) | Swap, fail2ban, actualizaciones y SSH solo con clave | medio | sí |
 | [03-firewall-de-hostinger](docs/03-firewall-de-hostinger.md) | Qué puertos abrir en el firewall de Hostinger | alto | sí |
-| [04-vigilar-tu-servidor](docs/04-vigilar-tu-servidor.md) | Avisos si tu app se cae (en preparación) | medio | sí |
+| [04-vigilar-tu-servidor](docs/04-vigilar-tu-servidor.md) | Uptime Kuma: avisos si tu app se cae | medio | sí |
 | [99-problemas-comunes](docs/99-problemas-comunes.md) | Síntoma → causa → solución | según el caso | según el caso |
 
 Cada guía empieza con metadatos (`riesgo`, `requiere_confirmacion_humana`, `requisitos`, `verificacion`, `reversion`) para que puedas decidir sin leerla entera. Aun así, léela entera antes de ejecutar (regla 1).

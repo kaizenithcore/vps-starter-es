@@ -344,7 +344,11 @@ c_docker() {
   if [ "$total" -eq 0 ]; then
     resultado OK docker contenedores "Docker funciona y no hay contenedores todavía."
   elif [ "${#parados[@]}" -eq 0 ] && [ "${#reiniciando[@]}" -eq 0 ] && [ "${#enfermos[@]}" -eq 0 ]; then
-    resultado OK docker contenedores "Los $total contenedores están en marcha."
+    if [ "$total" -eq 1 ]; then
+      resultado OK docker contenedores "El contenedor está en marcha."
+    else
+      resultado OK docker contenedores "Los $total contenedores están en marcha."
+    fi
   fi
   if [ "${#reiniciando[@]}" -gt 0 ]; then
     resultado FALLO docker reiniciando "Contenedores que arrancan y se caen una y otra vez: ${reiniciando[*]}." "$GUIA_99#un-contenedor-se-reinicia-sin-parar"

@@ -12,7 +12,11 @@
 - [Conectar al servidor](docs/01-conectar-al-servidor.md): terminal, SSH y claves
 - [Proteger el servidor](docs/02-proteger-el-servidor.md): swap, fail2ban, actualizaciones y SSH solo con clave
 - [Firewall de Hostinger](docs/03-firewall-de-hostinger.md): qué puertos abrir y cuáles no
-- [Vigilar tu servidor](docs/04-vigilar-tu-servidor.md): avisos si tu app se cae (en preparación)
+- [Vigilar tu servidor](docs/04-vigilar-tu-servidor.md): Uptime Kuma para recibir avisos si tu app se cae
+
+## Vigilancia
+
+- [docker-compose.yml](docker-compose.yml): Uptime Kuma; el panel arranca cerrado (127.0.0.1) hasta seguir la guía 04
 - [Problemas comunes](docs/99-problemas-comunes.md): síntoma, causa y solución
 - [Glosario](docs/glosario.md)
 

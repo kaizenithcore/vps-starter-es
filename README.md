@@ -21,6 +21,7 @@ Para quien ha hecho su app con Lovable, Bolt, Replit, v0, Cursor o Claude Code y
 - Actualizaciones de seguridad que se instalan solas.
 - Un firewall que solo deja abiertas las puertas que usas.
 - Una revisión rápida (`check.sh`) que te dice en lenguaje llano qué está bien y qué no.
+- Un aviso en tu móvil o tu correo si tu app deja de responder.
 
 ## Cómo empezar
 
@@ -30,6 +31,7 @@ Sigue las guías en orden:
 2. [Conectar al servidor](docs/01-conectar-al-servidor.md) (15 min)
 3. [Proteger el servidor](docs/02-proteger-el-servidor.md) (20 min)
 4. [El firewall de Hostinger](docs/03-firewall-de-hostinger.md) (15 min)
+5. [Vigilar tu servidor](docs/04-vigilar-tu-servidor.md): que te avise si tu app se cae (20 min)
 
 Si algo va mal: [problemas comunes](docs/99-problemas-comunes.md). Si una palabra no te suena: [glosario](docs/glosario.md).
 
