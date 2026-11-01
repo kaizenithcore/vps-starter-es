@@ -1,0 +1,5 @@
+Reading package lists...
+Inst openssl [3.0.13-0ubuntu3.4] (3.0.13-0ubuntu3.5 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])
+Inst linux-image-generic [6.8.0-50.51] (6.8.0-51.52 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])
+Inst htop [3.3.0-4build1] (3.3.0-4ubuntu0.1 Ubuntu:24.04/noble-updates [amd64])
+Conf openssl (3.0.13-0ubuntu3.5 Ubuntu:24.04/noble-updates, Ubuntu:24.04/noble-security [amd64])

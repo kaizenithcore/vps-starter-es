@@ -1,0 +1,4 @@
+passwordauthentication yes
+kbdinteractiveauthentication no
+permitrootlogin yes
+pubkeyauthentication yes

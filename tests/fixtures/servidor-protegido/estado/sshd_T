@@ -1,0 +1,4 @@
+passwordauthentication no
+kbdinteractiveauthentication no
+permitrootlogin without-password
+pubkeyauthentication yes

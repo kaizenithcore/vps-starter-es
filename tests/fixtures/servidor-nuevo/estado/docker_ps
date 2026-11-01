@@ -1,0 +1,6 @@
+coolify|exited|Exited (255) 2 days ago
+coolify-db|exited|Exited (255) 2 days ago
+coolify-redis|exited|Exited (255) 2 days ago
+coolify-realtime|exited|Exited (255) 2 days ago
+coolify-proxy|running|Up 3 days
+mi-app|running|Up 3 days (healthy)
