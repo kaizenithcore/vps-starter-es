@@ -5,7 +5,7 @@ riesgo: bajo
 requiere_confirmacion_humana: true
 tiempo_estimado: 15 min
 requisitos: [00-necesitas-un-vps]
-verificacion: "desde tu ordenador: ssh -o PasswordAuthentication=no root@IP_DE_TU_SERVIDOR true"
+verificacion: "desde tu ordenador: ssh -o PasswordAuthentication=no root@IP_DE_TU_SERVIDOR 'echo La clave funciona'"
 reversion: "#cómo-deshacerlo"
 ---
 
@@ -113,7 +113,7 @@ Estos comandos no muestran nada si van bien.
 Desde **tu ordenador**:
 
 ```bash
-ssh -o PasswordAuthentication=no root@IP_DE_TU_SERVIDOR true && echo "La clave funciona"
+ssh -o PasswordAuthentication=no root@IP_DE_TU_SERVIDOR "echo La clave funciona"
 ```
 
 La primera vez te preguntará si confías en el servidor (`Are you sure you want to continue connecting`). Escribe `yes` y pulsa Enter. Si pusiste frase de paso, te la pedirá: es la de tu llave, no la contraseña del servidor.

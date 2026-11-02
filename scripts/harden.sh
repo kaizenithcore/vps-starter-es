@@ -364,7 +364,7 @@ PubkeyAuthentication yes"
   1. Abre OTRA terminal y entra al servidor como siempre.
   2. Si entra, ya está: puedes cerrar esta.
   3. Si NO entra, deshazlo desde ESTA sesión:
-       sudo rm $ARCHIVO_SSH && sudo systemctl reload ssh
+       sudo rm $ARCHIVO_SSH && sudo systemctl try-reload-or-restart ssh
 EOF
 }
 

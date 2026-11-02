@@ -436,9 +436,9 @@ c_puertos() {
 
   if [ "$raros" -eq 0 ]; then
     if [ -z "$puertos" ]; then
-      resultado OK puertos esperados "Ningún puerto escucha hacia Internet."
+      resultado OK puertos esperados "Ningún puerto TCP escucha hacia Internet."
     else
-      resultado OK puertos esperados "Solo escuchan hacia Internet los puertos esperados: ${puertos//$'\n'/, }."
+      resultado OK puertos esperados "Solo escuchan hacia Internet los puertos TCP esperados: ${puertos//$'\n'/, }."
     fi
   fi
 }

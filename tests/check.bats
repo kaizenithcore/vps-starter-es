@@ -39,7 +39,7 @@ load helpers
   [[ "$output" == *"[OK]     SSH no acepta contraseñas: solo se entra con clave."* ]]
   [[ "$output" == *"[OK]     El usuario root solo puede entrar con clave."* ]]
   [[ "$output" == *"Docker no está instalado."* ]]
-  [[ "$output" == *"Solo escuchan hacia Internet los puertos esperados: 22, 80, 443."* ]]
+  [[ "$output" == *"Solo escuchan hacia Internet los puertos TCP esperados: 22, 80, 443."* ]]
 }
 
 @test "el firewall de Hostinger siempre sale como AVISO" {

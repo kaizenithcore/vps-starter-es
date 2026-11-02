@@ -6,12 +6,12 @@ La persona probablemente no es técnica y confía en ti. Tu trabajo es que su se
 
 ## Reglas
 
-1. **Lee la guía completa antes de ejecutar nada.** Empieza siempre con `sudo scripts/check.sh` y decide a partir de lo que diga.
+1. **Lee antes de ejecutar.** Clona el repositorio en el servidor, lee este archivo y la guía completa, y después ejecuta `sudo scripts/check.sh`. Decide a partir de lo que diga.
 2. **Nunca pidas, muestres ni guardes secretos**: contraseñas, claves SSH privadas, tokens de API. Si hace falta uno, la persona lo escribe en el panel de Hostinger o en su terminal, no en el chat. La clave SSH *pública* (el archivo `.pub`) sí se puede ver y copiar.
 3. **Siempre simula primero.** Ejecuta el script sin opciones (simula por defecto), enseña el resultado y espera un "sí" explícito antes de aplicar.
-4. **Los pasos de riesgo medio o alto piden confirmación humana uno a uno**: cambiar SSH, activar el firewall, reiniciar y borrar. Un "sí" vale para un paso, no para los siguientes.
-5. **Antes de tocar SSH**, la sesión actual sigue abierta, se abre una segunda para probar y solo entonces se cierra la primera. Explica a la persona cómo deshacerlo antes de aplicar.
-6. **Antes de activar el firewall de Hostinger**, comprueba que existen las reglas necesarias: 22, 80 y 443 (y, si hay Coolify, 8000, 6001 y 6002). Un firewall activo sin esas reglas bloquea todo lo demás.
+4. **Los pasos de riesgo medio o alto piden confirmación humana uno a uno**: cambiar SSH, activar el firewall, reiniciar y borrar (también borrar una regla del firewall). Un "sí" vale para un paso, no para los siguientes.
+5. **Antes de tocar SSH**, la sesión actual sigue abierta, se abre una segunda para probar y solo entonces se cierra la primera. Explica a la persona cómo deshacerlo antes de aplicar. Pregúntale también si usa la terminal del navegador de hPanel: puede dejar de funcionar sin contraseñas, y tiene que decidirlo antes de aplicar, no después.
+6. **Antes de activar el firewall de Hostinger**, comprueba que existen las reglas necesarias: 22 siempre; 80 y 443 si tiene o va a tener una web; y, si hay Coolify, 8000, 6001 y 6002. Un firewall activo sin esas reglas bloquea todo lo demás. Si el grupo de reglas ya existía, sigue la guía 03 antes de cambiarlo.
 7. **No uses `curl | bash`.** Clona el repositorio, lee el script y ejecútalo.
 8. **No ejecutes nada que compre, renueve o cancele servicios.**
 9. **Si algo no coincide con lo esperado, para y pregunta.** No improvises arreglos.
@@ -62,7 +62,11 @@ Ejecútalos desde la carpeta del repositorio clonado en el servidor.
 
 Cada comprobación con AVISO o FALLO trae en `guia` la guía (y la sección) donde está la solución.
 
-**Un AVISO que siempre aparece:** el firewall de Hostinger no se ve desde dentro del servidor, así que `check.sh` siempre lo marca como AVISO. Pregunta a la persona si ya revisó el firewall en hPanel (guía 03); no intentes "arreglarlo" desde el servidor.
+**Un AVISO que siempre aparece:** el firewall de Hostinger no se ve desde dentro del servidor, así que `check.sh` siempre lo marca como AVISO (`"seccion":"firewall","id":"externo"`) y nunca devuelve `0` en un servidor real. Pregunta a la persona si ya revisó el firewall en hPanel (guía 03); no intentes "arreglarlo" desde el servidor.
+
+**Cuándo está "en verde":** `check.sh` no tiene ningún FALLO, el único AVISO que queda es el del firewall de Hostinger y la persona ha comprobado el firewall desde su ordenador (guía 03, paso 6). Otros AVISO (actualizaciones pendientes, puertos inesperados) se explican a la persona y ella decide.
+
+**Salidas que pueden variar:** las salidas de ejemplo de las guías son orientativas (números, tiempos, orden). Si el sentido es el mismo, sigue; si dice algo distinto (un FALLO, un error), para y pregunta (regla 9).
 
 ## Qué no hacer nunca
 

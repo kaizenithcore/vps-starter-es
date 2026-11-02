@@ -105,11 +105,11 @@ Deberías ver flechas `→` en cada cambio y, al final:
 
 Si lo ejecutas otra vez, verás `ya estaba` en cada paso y ningún cambio nuevo. Es seguro repetirlo.
 
-### 4. Pon el sistema al día y reinicia
+### 4. Pon el sistema al día y reinicia si hace falta
 
 Un servidor recién creado suele tener decenas de actualizaciones pendientes, y algunas necesitan reiniciar.
 
-> **ALTO: necesita confirmación humana.** Se van a instalar todas las actualizaciones y después se reiniciará el servidor. Tu app estará caída uno o dos minutos. Hazlo en un momento tranquilo.
+> **ALTO: necesita confirmación humana.** Se van a instalar todas las actualizaciones pendientes. No reinicia nada todavía.
 
 Instala las actualizaciones (es un solo comando largo; cópialo entero):
 
@@ -118,6 +118,16 @@ sudo apt update && sudo DEBIAN_FRONTEND=noninteractive NEEDRESTART_MODE=l apt -y
 ```
 
 Lo largo sirve para que no te haga preguntas a mitad: conserva tus archivos de configuración y deja los reinicios de servicios para el reinicio completo.
+
+Mira si hace falta reiniciar:
+
+```bash
+cd ~/vps-starter-es && sudo scripts/check.sh --section actualizaciones
+```
+
+Si ves `[OK]     No hace falta reiniciar.`, has terminado este paso. Si ves `necesita reiniciarse`, sigue leyendo. No tiene que ser ahora: puedes reiniciar más tarde, en un momento tranquilo.
+
+> **ALTO: necesita confirmación humana.** Se va a reiniciar el servidor. Tu app estará caída uno o dos minutos.
 
 Si usas Docker, apunta qué contenedores están en marcha antes de reiniciar:
 
@@ -174,10 +184,12 @@ Deberías ver:
   IMPORTANTE: no cierres esta sesión todavía.
 ```
 
+En lugar de `→ systemctl reload ssh` puede salir `SSH arranca bajo demanda: la próxima conexión ya usará la configuración nueva.` Las dos cosas son correctas: depende de si SSH estaba en marcha en ese momento.
+
 Ahora, **en otra ventana de tu ordenador**, sin cerrar la primera:
 
 ```bash
-ssh root@IP_DE_TU_SERVIDOR true && echo "Sigo pudiendo entrar"
+ssh root@IP_DE_TU_SERVIDOR "echo Sigo pudiendo entrar"
 ```
 
 Deberías ver `Sigo pudiendo entrar`.
@@ -231,7 +243,7 @@ Cada parte se deshace por separado. Ejecuta solo la que quieras quitar.
 **SSH** (vuelve a aceptar contraseñas):
 
 ```bash
-sudo rm /etc/ssh/sshd_config.d/00-hardening.conf && sudo systemctl reload ssh
+sudo rm /etc/ssh/sshd_config.d/00-hardening.conf && sudo systemctl try-reload-or-restart ssh
 ```
 
 **Swap:**

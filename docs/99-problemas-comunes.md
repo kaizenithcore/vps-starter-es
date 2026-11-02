@@ -145,7 +145,7 @@ No borres carpetas de `/data` ni volúmenes de Docker para liberar espacio: ahí
 
 **Causa:** se han instalado actualizaciones (normalmente del núcleo del sistema) que solo se aplican al reiniciar.
 
-**Solución:** sigue el paso 4 de la [guía 02](02-proteger-el-servidor.md#4-pon-el-sistema-al-día-y-reinicia). Resumido: apunta qué contenedores están en marcha, reinicia con `sudo reboot`, espera dos minutos, vuelve a entrar y comprueba con `sudo scripts/check.sh` que todo ha vuelto.
+**Solución:** sigue el paso 4 de la [guía 02](02-proteger-el-servidor.md#4-pon-el-sistema-al-día-y-reinicia-si-hace-falta). Resumido: apunta qué contenedores están en marcha, reinicia con `sudo reboot`, espera dos minutos, vuelve a entrar y comprueba con `sudo scripts/check.sh` que todo ha vuelto.
 
 ### Docker no responde
 

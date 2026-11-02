@@ -11,3 +11,5 @@
 - `tests/comprobar_docs.py`: revisa metadatos, secciones de la plantilla, enlaces, anclas e IPs.
 - `docker-compose.yml` con Uptime Kuma 2.5.9 (slim, sin root): arranca cerrado en 127.0.0.1, límite de 512 MB y registros acotados. `.env.example` para abrirlo.
 - Guía 04: vigilar tu servidor con Uptime Kuma.
+- CI en GitHub Actions (shellcheck, bats, guías, compose y Markdown) y revisión semanal de enlaces externos.
+- Cambios tras la prueba con un agente sin contexto: comandos que funcionan en el PowerShell de Windows, reinicio solo si hace falta, deshacer SSH con `try-reload-or-restart`, cómo tratar un grupo de firewall que ya existía y criterio de "en verde" en `AGENTS.md`.

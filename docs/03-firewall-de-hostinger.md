@@ -38,8 +38,10 @@ Deberías ver algo así:
 
 ```text
 Puertos abiertos
-[OK]     Solo escuchan hacia Internet los puertos esperados: 22, 80, 443.
+[OK]     Solo escuchan hacia Internet los puertos TCP esperados: 22, 80, 443.
 ```
+
+Si aún no tienes ninguna web publicada, verás solo `22`. `check.sh` revisa los puertos TCP, que son los de SSH y la web; los UDP, como el de algunas VPN, no aparecen.
 
 Si ves avisos de otros puertos, apúntalos: la tabla del paso 2 te dice qué hacer con cada uno. Si `check.sh` dice `Coolify detectado`, también necesitarás los puertos de Coolify.
 
@@ -48,8 +50,8 @@ Si ves avisos de otros puertos, apúntalos: la tabla del paso 2 te dice qué hac
 | Puerto | Para qué | ¿Abrir? |
 | --- | --- | --- |
 | 22 (TCP) | SSH, para entrar al servidor | **Sí, siempre.** Sin él te quedas fuera |
-| 80 (TCP) | Web normal ([HTTP](glosario.md#http-y-https)) | Sí, si tienes una web o app |
-| 443 (TCP) | Web segura ([HTTPS](glosario.md#http-y-https)) | Sí, si tienes una web o app |
+| 80 (TCP) | Web normal ([HTTP](glosario.md#http-y-https)) | Sí, si tienes o vas a tener una web o app |
+| 443 (TCP) | Web segura ([HTTPS](glosario.md#http-y-https)) | Sí, si tienes o vas a tener una web o app |
 | 8000 (TCP) | Panel de Coolify | Solo si usas Coolify |
 | 6001 (TCP) | Tiempo real de Coolify | Solo si usas Coolify |
 | 6002 (TCP) | Terminal de Coolify | Solo si usas Coolify |
@@ -57,11 +59,20 @@ Si ves avisos de otros puertos, apúntalos: la tabla del paso 2 te dice qué hac
 | 3001 (TCP) | Uptime Kuma | Solo para tu IP ([guía 04](04-vigilar-tu-servidor.md)) |
 | 5432, 3306, 6379, 27017 | Bases de datos | **No.** Tus apps llegan a ellas desde dentro |
 
-Si usas una VPN o una red privada (por ejemplo Tailscale), puede que ya tengas una regla para su puerto. Consérvala.
+Abrir el 80 y el 443 sin tener web todavía no abre nada: si no hay ningún programa escuchando en esos puertos, no hay nada a lo que llegar. Ponerlas desde el principio evita que tu web no se vea el día que la publiques.
+
+Si usas una VPN o una red privada (por ejemplo Tailscale, que usa el puerto UDP 41641), puede que ya tengas una regla para su puerto. Consérvala.
 
 ### 3. Crea el grupo de reglas
 
-En hPanel:
+**Si ya tienes un grupo de reglas creado**, antes de cambiarlo:
+
+- Mira en hPanel si ese grupo lo usa algún otro servidor tuyo. Si lo comparten, cualquier cambio les afecta a todos.
+- Por cada regla que no sepas para qué es, mira dentro del servidor si algo usa ese puerto: `sudo ss -ltnp` (TCP) y `sudo ss -lunp` (UDP). Si nada lo usa y no recuerdas haberla puesto, probablemente sobra.
+
+> **ALTO: necesita confirmación humana.** Borrar una regla de un grupo que ya existía puede cortar algo que no ves desde este servidor, por ejemplo una VPN u otro servidor que use el mismo grupo. Confirma antes cada regla que se borra.
+
+**Si no tienes ningún grupo**, créalo en hPanel:
 
 1. Entra en **VPS**, elige tu servidor y abre **Seguridad** → **Firewall**.
 2. Pulsa **Añadir firewall**, ponle un nombre (por ejemplo `vps-starter`) y pulsa **Crear**.
@@ -78,7 +89,7 @@ Los nombres exactos de los botones pueden cambiar un poco; la idea es la misma.
 Mira la lista de reglas del grupo y comprueba, una por una:
 
 - [ ] Hay una regla **Aceptar** para el **22**.
-- [ ] Hay reglas **Aceptar** para el **80** y el **443** (si tienes web).
+- [ ] Hay reglas **Aceptar** para el **80** y el **443** (si tienes o vas a tener web).
 - [ ] Si usas Coolify: **8000**, **6001** y **6002**.
 - [ ] **No** hay ninguna regla para el **8080**.
 
@@ -95,7 +106,7 @@ Los cambios tardan hasta dos minutos. Las conexiones que ya tienes abiertas no s
 Espera dos minutos y, desde **tu ordenador**, abre una conexión nueva:
 
 ```bash
-ssh root@IP_DE_TU_SERVIDOR true && echo "SSH sigue abierto"
+ssh root@IP_DE_TU_SERVIDOR "echo SSH sigue abierto"
 ```
 
 Deberías ver `SSH sigue abierto`.
