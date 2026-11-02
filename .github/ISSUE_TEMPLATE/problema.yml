@@ -1,0 +1,46 @@
+name: Algo no funciona
+description: Un paso de una guía o un script no hace lo que dice.
+labels: ["problema"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Gracias por avisar. **Antes de pegar nada, quita IPs, nombres de usuario, contraseñas, claves y tokens.**
+  - type: dropdown
+    id: guia
+    attributes:
+      label: ¿En qué guía estabas?
+      options:
+        - 00 ¿Necesitas un VPS?
+        - 01 Conectar al servidor
+        - 02 Proteger el servidor
+        - 03 Firewall de Hostinger
+        - 04 Vigilar tu servidor
+        - 99 Problemas comunes
+        - Ninguna (solo los scripts)
+    validations:
+      required: true
+  - type: input
+    id: paso
+    attributes:
+      label: ¿En qué paso?
+      placeholder: "Por ejemplo: paso 5"
+  - type: textarea
+    id: que-paso
+    attributes:
+      label: ¿Qué esperabas y qué pasó?
+    validations:
+      required: true
+  - type: textarea
+    id: check
+    attributes:
+      label: Salida de sudo scripts/check.sh
+      description: Revisa que no haya datos privados antes de pegarla.
+      render: text
+  - type: dropdown
+    id: agente
+    attributes:
+      label: ¿Lo hacías con un agente de IA?
+      options:
+        - "No"
+        - "Sí"

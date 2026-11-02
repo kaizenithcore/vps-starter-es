@@ -1,0 +1,45 @@
+# Comprobaciones automáticas en cada cambio.
+# Las acciones van fijadas por commit (con su versión en el comentario).
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  scripts-y-guias:
+    name: Scripts, pruebas y guías
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: shellcheck
+        run: |
+          shellcheck --version | head -n 2
+          shellcheck -x scripts/*.sh scripts/lib/*.sh tests/helpers.bash
+
+      - name: Instalar bats
+        run: sudo apt-get update -q && sudo apt-get install -y -q bats jq
+
+      - name: Pruebas (bats)
+        run: bats tests
+
+      - name: Guías (metadatos, secciones, enlaces internos, IPs)
+        run: python3 tests/comprobar_docs.py
+
+      - name: docker compose config
+        run: docker compose config -q && echo "docker-compose.yml válido"
+
+  markdown:
+    name: Estilo de Markdown
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: DavidAnson/markdownlint-cli2-action@696eb3f2509270d7b882d2aa68347bc676e7af34 # v25.0.0
+        with:
+          globs: "**/*.md"

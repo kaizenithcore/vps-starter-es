@@ -1,0 +1,11 @@
+# Reglas de estilo de Markdown (markdownlint).
+config:
+  default: true
+  MD013: false                  # sin límite de longitud de línea: es prosa
+  MD024:
+    siblings_only: true         # títulos repetidos solo si están en secciones distintas
+ignores:
+  - "tests/fixtures/**"
+  - "PLAN.md"
+  - "Plan*.md"
+  - "CLAUDE.md"                 # una sola línea que importa AGENTS.md

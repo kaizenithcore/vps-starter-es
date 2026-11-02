@@ -1,0 +1,14 @@
+name: Propuesta de mejora
+description: Algo que se podría explicar mejor o una guía que falta.
+labels: ["mejora"]
+body:
+  - type: textarea
+    id: propuesta
+    attributes:
+      label: ¿Qué propones?
+    validations:
+      required: true
+  - type: textarea
+    id: por-que
+    attributes:
+      label: ¿A quién le ayudaría y por qué?

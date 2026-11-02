@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Fallo de seguridad
+    url: https://github.com/kaizenithcore/vps-starter-es/security/advisories/new
+    about: Si algo puede dejar a alguien sin acceso o expuesto, avísanos en privado.
