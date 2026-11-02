@@ -183,16 +183,21 @@ leer_config_ssh_archivos() {
 
 _leer_archivo_ssh() {
   local clave resto patron f
+  local -a patrones archivos
   while read -r clave resto || [ -n "$clave" ]; do
     clave="${clave,,}"
     case "$clave" in
       "" | \#*) continue ;;
       match) return 0 ;; # lo que sigue a Match solo vale para casos concretos
       include)
-        for patron in $resto; do
+        # read -a separa sin expandir el *: la expansión se hace después,
+        # ya dentro de VPS_ROOT (si no, en las pruebas miraría el /etc real).
+        read -r -a patrones <<<"$resto"
+        for patron in "${patrones[@]}"; do
           [[ "$patron" == /* ]] || patron="/etc/ssh/$patron"
-          # shellcheck disable=SC2086 # aquí queremos que el * se expanda
-          for f in $(ruta "$patron"); do
+          # Ordenados como lo hace sshd: el orden decide qué valor gana.
+          mapfile -t archivos < <(compgen -G "$(ruta "$patron")" | LC_ALL=C sort)
+          for f in "${archivos[@]}"; do
             if [ -f "$f" ]; then _leer_archivo_ssh "$f"; fi
           done
         done
