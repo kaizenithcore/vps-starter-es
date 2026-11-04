@@ -2,16 +2,21 @@
 
 **Has comprado un servidor y no sabes por dónde empezar.** Estas guías te llevan, en español y sin tecnicismos, de "acabo de comprar un VPS" a "mi servidor está protegido y sé si algo va mal". Puedes seguirlas tú, o pedírselo a tu agente de IA.
 
-<!--
-  Hito 5 (pendiente de visto bueno): botón "Deploy on Hostinger" y divulgación de afiliación.
-  No añadir hasta tener la aprobación explícita.
--->
-
 ## Para quién es
 
 Para quien ha hecho su app con Lovable, Bolt, Replit, v0, Cursor o Claude Code y ahora la quiere en un servidor propio. No hace falta saber qué es SSH ni un firewall: las guías lo explican cuando hace falta.
 
 **¿Seguro que necesitas un servidor?** Muchas apps funcionan mejor en un hosting gestionado, sin nada que mantener. La [guía 00](docs/00-necesitas-un-vps.md) te ayuda a decidirlo en 5 minutos.
+
+## ¿Todavía no tienes servidor?
+
+Si después de la [guía 00](docs/00-necesitas-un-vps.md) decides que sí necesitas un VPS, este botón crea uno en Hostinger con Docker y deja instalado el vigilante de la [guía 04](docs/04-vigilar-tu-servidor.md) (Uptime Kuma), cerrado hasta que tú lo abras.
+
+[![Deploy on Hostinger](https://assets.hostinger.com/vps/deploy.svg)](https://www.hostinger.com/deploy?template=kaizenithcore/vps-starter-es&ref=TU_CODIGO_DE_PARTNER)
+
+El botón no protege el servidor por ti: después sigue las guías 01 a 04 igualmente. El proceso de compra y la creación del servidor los gestiona Hostinger.
+
+> **Enlace de afiliado.** Si compras a través de este botón, Hostinger te aplica un 20 % de descuento en tu primera compra y paga una comisión a Kaizenith, que mantiene este repositorio. No tienes por qué usarlo: las guías funcionan igual con un VPS de cualquier proveedor, y si no necesitas un VPS, la guía 00 te lo dice.
 
 ## Qué conseguirás
 
@@ -77,7 +82,13 @@ Los scripts simulan por defecto y no cambian nada hasta que se lo pides. El camb
 ¿Has encontrado un fallo de seguridad? Mira [SECURITY.md](SECURITY.md).
 
 <!--
-  Hito 5 (pendiente de decisión): sección "¿Prefieres que lo haga yo?" con el enlace al servicio.
+  PENDIENTE DE DECISIÓN: sección "¿Prefieres que lo haga yo?". Borrador listo para descomentar:
+
+  ## ¿Prefieres que lo haga yo?
+
+  Si prefieres no tocar la terminal, en Kaizenith llevamos a producción apps hechas con IA:
+  servidor protegido, dominio con HTTPS y avisos si algo se cae.
+  Enlace: TU_ENLACE_DE_SERVICIO
 -->
 
 ## Licencia

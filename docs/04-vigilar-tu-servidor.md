@@ -31,7 +31,9 @@ Uptime Kuma deja crear la cuenta de administrador a **la primera persona que abr
 
 ### 1. Arranca Uptime Kuma
 
-Dentro del servidor, en la carpeta del repositorio:
+**Si creaste el servidor con el botón "Deploy on Hostinger" del README**, Uptime Kuma ya está en marcha: salta al paso 2.
+
+Si no, dentro del servidor, en la carpeta del repositorio:
 
 ```bash
 cd ~/vps-starter-es && sudo docker compose up -d
@@ -79,6 +81,14 @@ Crea tu archivo de configuración a partir del ejemplo y cambia una línea:
 ```bash
 cp .env.example .env && sed -i 's/^KUMA_BIND=.*/KUMA_BIND=0.0.0.0/' .env && sudo docker compose up -d
 ```
+
+**Si lo desplegaste con el botón**, Hostinger guardó el archivo en otra carpeta. Este comando la busca, añade la línea y vuelve a arrancar Uptime Kuma:
+
+```bash
+cd "$(sudo docker inspect uptime-kuma --format '{{ index .Config.Labels "com.docker.compose.project.working_dir" }}')" && echo "KUMA_BIND=0.0.0.0" | sudo tee -a .env && sudo docker compose up -d
+```
+
+Si más adelante cambias ese proyecto desde el Docker Manager de hPanel, comprueba con el comando de abajo que el panel sigue abierto como quieres.
 
 Comprueba:
 
@@ -151,10 +161,16 @@ Ese AVISO es el recordatorio de que la seguridad del panel depende de la regla d
 
 ## Cómo deshacerlo
 
+Estos comandos se ejecutan en la carpeta del repositorio. Si lo desplegaste con el botón, entra antes en la carpeta de Hostinger:
+
+```bash
+cd "$(sudo docker inspect uptime-kuma --format '{{ index .Config.Labels "com.docker.compose.project.working_dir" }}')"
+```
+
 **Volver a cerrar el panel** (Uptime Kuma sigue vigilando, pero solo se puede entrar desde dentro):
 
 ```bash
-rm .env && sudo docker compose up -d
+sudo rm .env && sudo docker compose up -d
 ```
 
 Quita también la regla del 3001 en el firewall de Hostinger.
